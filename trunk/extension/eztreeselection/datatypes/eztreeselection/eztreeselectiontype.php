@@ -350,7 +350,8 @@ class eZTreeSelectionType extends eZDataType
             // first get the content view javascript code
             $viewOptions = new ezcTreeVisitorYUITreeViewOptions( array( 'displayRootNode' => true,
                                                                         'tree' => $tree,
-                                                                        'highlightNodeIds' => $selectedOptionsIDsArray ) );
+                                                                        'highlightNodeIds' => $selectedOptionsIDsArray,
+                                                                        'highlightColor' => $this->treeSelectionIni->variable( 'GeneralSettings', 'ColorOfSelectedItem' ) ) );
             $visitor = new ezcTreeVisitorYUITreeView( $divID, $viewOptions );
             $tree->accept( $visitor );
             $contentViewYuiTreeViewJavascript = (string) $visitor . '';

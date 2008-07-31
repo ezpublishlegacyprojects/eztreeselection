@@ -42,6 +42,7 @@ class ezcTreeVisitorYUITreeViewOptions extends ezcBaseOptions
         $this->basePath = '';
         $this->displayRootNode = false;
         $this->highlightNodeIds = array();
+        $this->highlightColor = 'orange';
         $this->selectedNodes = array();        
         $this->selectedNodeLink = false;
         $this->yuiNodeClass = 'TextNode';
@@ -80,6 +81,7 @@ class ezcTreeVisitorYUITreeViewOptions extends ezcBaseOptions
                 $this->properties[$name] = $value;
                 break;            
             
+            case 'highlightColor':
             case 'inputElementPrefix':
             case 'checkElementPrefix':
             case 'yuiNodeClass':

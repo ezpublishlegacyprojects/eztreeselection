@@ -112,7 +112,7 @@ class ezcTreeVisitorYUITreeView implements ezcTreeVisitor
                 {
                     $data[$field] = htmlspecialchars( $data[$field] );
                     if ( $highlight )
-                        $data[$field] = '<strong><span style=\"color: orange;\">' . $data[$field] . '</span></strong>';                    
+                        $data[$field] = '<strong><span style=\"color:' . $this->options->highlightColor . ';\">' . $data[$field] . '</span></strong>';                    
                 }
             }            
         }
@@ -120,7 +120,7 @@ class ezcTreeVisitorYUITreeView implements ezcTreeVisitor
         {
             $data = htmlspecialchars( $data );
             if ( $highlight )            
-                $data = '<strong><span style=\"color: orange;\">' . $data . '</span></strong>';
+                $data = '<strong><span style=\"color:' . $this->options->highlightColor . ';\">' . $data . '</span></strong>';
         }
         
         return $data;
