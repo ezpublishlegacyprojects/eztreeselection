@@ -1,0 +1,19 @@
+Requirements
+============
+* eZ Publish >= 4.0.0
+* eZ Components trunk, or release > eZ Components 2008.1 stable
+
+Setup
+=====
+* Unpack the extension in the 'extension' directory
+* Enable the extension ( site.ini ).
+* Regenerate the autoload array : 
+ 
+ - From the Back Office : Setup > Extensions
+ - From the command line, form the root of eZ Publish :
+
+::
+
+ php bin/php/ezpgenerateautoloads.php -e -t autoload
+  
+* Clear all caches
