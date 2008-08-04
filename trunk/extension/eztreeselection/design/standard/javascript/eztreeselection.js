@@ -444,6 +444,7 @@ YAHOO.extend(YAHOO.widget.CheckBoxNode, YAHOO.widget.TextNode, {
 	        sb[sb.length] = ' name="' + this.getLabelEditName() + '"';
 		    sb[sb.length] = ' class="' + this.getLabelEditStyle() + '"';
 		    sb[sb.length] = ' onblur="return ' + getNode + '.rename();"';
+		    sb[sb.length] = ' onkeypress="return ' + getNode + '.catchKeyPress( event, \'rename\' );"';		    
 		    sb[sb.length] = ' value="' + this.label + '"';
 		    sb[sb.length] = ' />';
 		    sb[sb.length] = '<img src="' + this.imagePaths.validateLabelModificationImage + '"';
@@ -461,6 +462,7 @@ YAHOO.extend(YAHOO.widget.CheckBoxNode, YAHOO.widget.TextNode, {
 	        sb[sb.length] = ' name="' + this.getNewOptionInputName() + '"';
 		    sb[sb.length] = ' class="' + this.getLabelEditStyle() + '"';
 		    sb[sb.length] = ' onblur="return ' + getNode + '.addChild();"';
+		    sb[sb.length] = ' onkeypress="return ' + getNode + '.catchKeyPress( event, \'addChild\' );"';		    
 		    sb[sb.length] = ' value=""';
 		    sb[sb.length] = ' />';
 		    sb[sb.length] = '<img src="' + this.imagePaths.validateLabelModificationImage + '"';
@@ -625,6 +627,29 @@ YAHOO.extend(YAHOO.widget.CheckBoxNode, YAHOO.widget.TextNode, {
 	    	removeButton.click();
     	}
     },
+    
+    catchKeyPress: function( event, callback ) 
+    {
+    	var keyCodeList = new Array( /* return */ '13', /* tab */'9' );
+    	
+    	for ( var i=0; i < keyCodeList.length; i++ )
+    	{
+    		if ( keyCodeList[i] == event.keyCode )
+    		{
+    			var testString = 'typeof( this.' + callback + ' )'; 
+    			if( eval( testString ) == 'function' )
+    			{
+	    			// prevent default action on event here
+	    			YAHOO.util.Event.preventDefault( event );
+
+	    			// trigger callback here
+	    			var execString = 'this.' + callback + '()';
+	    			eval( execString );
+    			}
+    			break;
+    		}
+    	}
+    },    
         
     toString: function() {
         return "CheckBoxNode (" + this.index + ") " + this.label;
